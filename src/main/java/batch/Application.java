@@ -12,7 +12,7 @@ public class Application {
 
         try {
         	SpringApplication application = new SpringApplication(Application.class);
-            // application.setWebApplicationType(WebApplicationType.NONE);
+             application.setWebApplicationType(WebApplicationType.NONE);
 
             ConfigurableApplicationContext context = application.run(args);
             int exitCode = SpringApplication.exit(context);
