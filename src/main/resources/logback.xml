@@ -2,5 +2,7 @@
 <configuration>
 	<include
 		resource="org/springframework/boot/logging/logback/base.xml" />
+		
+	
 	<!-- ここに追加したい設定を記述 -->
 </configuration>

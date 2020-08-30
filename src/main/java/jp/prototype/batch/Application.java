@@ -1,4 +1,4 @@
-package batch;
+package jp.prototype.batch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;

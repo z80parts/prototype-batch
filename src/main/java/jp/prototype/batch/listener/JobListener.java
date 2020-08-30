@@ -1,4 +1,4 @@
-package batch.listener;
+package jp.prototype.batch.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

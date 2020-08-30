@@ -1,4 +1,4 @@
-package batch.tasklet;
+package jp.prototype.batch.tasklet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +9,10 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ImportTasklet implements Tasklet {
-
-  private static final Logger log = LoggerFactory.getLogger(ImportTasklet.class);
-
+public class AdditionalTasklet implements Tasklet {
+  
+  private static final Logger log = LoggerFactory.getLogger(AdditionalTasklet.class);
+  
   @Override
   public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
       throws Exception {
