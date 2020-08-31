@@ -24,24 +24,24 @@ public class DbConfig {
 
   private String driverClassName;
 
-//  @Bean
-//  public DataSource dataSource() {
-//    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-//    driverManagerDataSource.setDriverClassName(driverClassName);
-//    driverManagerDataSource.setUrl(url);
-//    driverManagerDataSource.setUsername(username);
-//    driverManagerDataSource.setPassword(password);
-//    return driverManagerDataSource;
-//  }
-//
-//  @Bean
-//  public JdbcTemplate jdbcTemplate() {
-//    return new JdbcTemplate(transactionManager().getDataSource());
-//  }
-//
-//  @Bean
-//  public DataSourceTransactionManager transactionManager() {
-//    return new DataSourceTransactionManager(dataSource());
-//  }
+  @Bean
+  public DataSource dataSource() {
+    DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+    driverManagerDataSource.setDriverClassName(driverClassName);
+    driverManagerDataSource.setUrl(url);
+    driverManagerDataSource.setUsername(username);
+    driverManagerDataSource.setPassword(password);
+    return driverManagerDataSource;
+  }
+
+  @Bean
+  public JdbcTemplate jdbcTemplate() {
+    return new JdbcTemplate(transactionManager().getDataSource());
+  }
+
+  @Bean
+  public DataSourceTransactionManager transactionManager() {
+    return new DataSourceTransactionManager(dataSource());
+  }
 
 }
