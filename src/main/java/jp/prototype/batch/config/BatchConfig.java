@@ -1,41 +1,30 @@
 package jp.prototype.batch.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.launch.support.SimpleJobLauncher;
-import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
-import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import jp.prototype.batch.listener.JobListener;
 import jp.prototype.batch.tasklet.AdditionalTasklet;
 import jp.prototype.batch.tasklet.WriteToDbTasklet;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 @Configuration
 @EnableBatchProcessing
 public class BatchConfig {
 
-  @Autowired
   private WriteToDbTasklet exportTasklet;
 
-  @Autowired
   private AdditionalTasklet additionalTasklet;
 
-  @Autowired
   private JobBuilderFactory jobBuilderFactory;
 
-  @Autowired
   private StepBuilderFactory stepBuilderFactory;
 
   @Bean
@@ -62,23 +51,4 @@ public class BatchConfig {
     return new JobListener();
   }
 
-  @Bean
-  public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-    return new JdbcTemplate(dataSource);
-  }
-
-  @Bean
-  public JobRepository jobRepository() throws Exception {
-    MapJobRepositoryFactoryBean factoryBean = new MapJobRepositoryFactoryBean(
-        new ResourcelessTransactionManager());
-    JobRepository jobRepository = factoryBean.getObject();
-    return jobRepository;
-  }
-
-  @Bean
-  public JobLauncher jobLauncher(JobRepository jobRepository) {
-    SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
-    jobLauncher.setJobRepository(jobRepository);
-    return jobLauncher;
-  }
 }

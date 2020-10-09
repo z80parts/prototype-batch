@@ -5,7 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -24,7 +24,6 @@ public class DbConfig {
 
   private String driverClassName;
 
-  @Bean
   public DataSource dataSource() {
     DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
     driverManagerDataSource.setDriverClassName(driverClassName);
@@ -35,8 +34,8 @@ public class DbConfig {
   }
 
   @Bean
-  public JdbcTemplate jdbcTemplate() {
-    return new JdbcTemplate(transactionManager().getDataSource());
+  public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+    return new NamedParameterJdbcTemplate(transactionManager().getDataSource());
   }
 
   @Bean
