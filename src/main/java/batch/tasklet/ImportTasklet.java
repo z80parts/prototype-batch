@@ -14,8 +14,7 @@ public class ImportTasklet implements Tasklet {
   private static final Logger log = LoggerFactory.getLogger(ImportTasklet.class);
 
   @Override
-  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
-      throws Exception {
+  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
     log.info("Execute job.");
     return RepeatStatus.FINISHED;
